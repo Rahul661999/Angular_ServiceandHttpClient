@@ -1,0 +1,63 @@
+<!-- <p>song-list works!</p> -->
+<h1 style="color: #e67457;">FED Assignment3 : Service, HttpClient</h1>
+<hr>
+
+<h2>Number of songs in my playlist : {{songData.length}}</h2>
+<br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name of Song</th>
+            <th>Name of the Album</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of songData">
+            <td>{{row.id}}</td>
+            <td>{{row.Name}}</td>
+            <td>{{row.Album}}</td>
+
+                <button (click)="deleteSongData(row)">Delete</button>
+                <button (click)="editSong(row)" class="open-button" (click)="openForm()" class="btn btn-primary" data-toggle="modal" data-target="#myForm">Edit</button>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>Add New Song</h2>
+<br>
+<form [formGroup]="formValue">
+
+<label>Enter Song Name:</label>
+<input type="text" id="song" formControlName="Name">
+<br><br>
+<label>Enter Album Name:</label>
+<input type="text" id="album" formControlName="Album">   
+
+</form>
+<hr>
+<button type="button" (click)="postSongDetails()">Add Song</button>
+
+
+
+
+<!-- <button class="open-button" (click)="openForm()">Open Form</button> -->
+
+<div class="form-popup" id="myForm">
+  <form [formGroup]="formValue" action="" class="form-container">
+    <h1>Edit Form</h1>
+
+    <label for="Name"><b>Song Name</b></label>
+    <input type="text" placeholder="Enter Song Name" name="Name" formControlName="Name" required>
+
+    <label for="Album"><b>Album Name</b></label>
+    <input type="text" placeholder="Enter Album Name" name="Album" formControlName="Album" required>
+
+    <button type="submit" class="btn" (click)="updateSongDetails()">Update</button>
+    <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+  </form>
+</div>
+
+
